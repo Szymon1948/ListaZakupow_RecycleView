@@ -1,9 +1,12 @@
 package com.example.listazakupow_recycleview;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,22 +37,40 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.Produk
     @Override
     public void onBindViewHolder(@NonNull ProduktViewHolder holder, int position) {
         holder.productItemView.setText(listaZakupow.get(position));
+        holder.productItemView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(holder.productItemView.isChecked()){
+                    holder.productItemView.setPaintFlags(
+                            holder.productItemView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG
+                    );
+                }
+                else {
+                    holder.productItemView.setPaintFlags(
+                            holder.productItemView.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG
+                    );
+                }
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return listaZakupow.size();
     }
-
+    public void dodajProduktDoListy(String produkt){
+        listaZakupow.addLast(produkt);
+        notifyDataSetChanged();
+    }
     //1-Create class 'ProduktViewHolder'
                                    //2-Create constructor matching super
                                                                         //4-Implement Methods
     public class ProduktViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    public final TextView productItemView;
+    public final CheckBox productItemView;
     public final ShoppingAdapter shoppingAdapter;
     public ProduktViewHolder(@NonNull View itemView, ShoppingAdapter adapter) {
         super(itemView);
-        productItemView = itemView.findViewById(R.id.textView);
+        productItemView = itemView.findViewById(R.id.checkbox);
         shoppingAdapter = adapter;
         itemView.setOnClickListener(this);
     }
