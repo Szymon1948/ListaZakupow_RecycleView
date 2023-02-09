@@ -9,7 +9,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="24dp"
-        android:backgroundTint="#c8b4b2"
+        android:background="#c8b4b2"
         android:textColor="@color/black"
         android:layout_margin="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
