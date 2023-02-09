@@ -13,7 +13,7 @@ import android.widget.EditText;
 import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity {
-    LinkedList <String> produkty = new LinkedList<>();
+    LinkedList <Product> produkty = new LinkedList<>();
     private RecyclerView shoppingRecyclerView;
     private ShoppingAdapter adapter;
     @Override
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         //todo: sprawdz czy pole edycyjne jest wypelnione
-                       String dodawanyProdukt = editText.getText().toString();
+                       Product dodawanyProdukt = new Product(editText.getText().toString());
                        //dodać do listy w adapterze
                         adapter.dodajProduktDoListy(dodawanyProdukt);
                        editText.setText("");
@@ -42,14 +42,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void wypelnijListe(){
-        produkty.addLast("jablka");
-        produkty.addLast("ciasto");
-        produkty.addLast("pepsi");
-        produkty.addLast("jaja");
-        produkty.addLast("chleb");
-        produkty.addLast("kielbasa");
-        produkty.addLast("nudle");
-        produkty.addLast("ser");
-        produkty.addLast("gorzka_czekolada");
+        produkty.addLast(new Product("jablka"));
+        produkty.addLast(new Product("ciasto"));
+        produkty.addLast(new Product("pepsi"));
+        produkty.addLast(new Product("jaja"));
+        produkty.addLast(new Product("chleb"));
+        produkty.addLast(new Product("kielbasa"));
+        produkty.addLast(new Product("nudle"));
+        produkty.addLast(new Product("ser"));
+        produkty.addLast(new Product("gorzka_czekolada"));
     }
 }
