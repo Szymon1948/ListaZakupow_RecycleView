@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,13 +43,26 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.Produk
 
     //1-Create class 'ProduktViewHolder'
                                    //2-Create constructor matching super
-    public class ProduktViewHolder extends RecyclerView.ViewHolder {
+                                                                        //4-Implement Methods
+    public class ProduktViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public final TextView productItemView;
     public final ShoppingAdapter shoppingAdapter;
     public ProduktViewHolder(@NonNull View itemView, ShoppingAdapter adapter) {
         super(itemView);
         productItemView = itemView.findViewById(R.id.textView);
         shoppingAdapter = adapter;
+        itemView.setOnClickListener(this);
     }
-}
+
+        @Override
+        public void onClick(View v) {
+            int shoppingPosition = getLayoutPosition();
+            String prod = listaZakupow.get(shoppingPosition);
+            prod = "Kupione "+prod;
+            listaZakupow.set(shoppingPosition,prod);
+            shoppingAdapter.notifyDataSetChanged();
+            //todo: zrobić żeby po drugim kliknięciu nie dopisywało się kupione
+            Toast.makeText(inflater.getContext(), prod, Toast.LENGTH_SHORT).show();
+        }
+    }
 }
