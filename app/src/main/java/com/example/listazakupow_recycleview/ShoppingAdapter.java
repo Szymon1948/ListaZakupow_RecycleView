@@ -62,6 +62,7 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.Produk
             listaZakupow.set(shoppingPosition,prod);
             shoppingAdapter.notifyDataSetChanged();
             //todo: zrobić żeby po drugim kliknięciu nie dopisywało się kupione
+
             Toast.makeText(inflater.getContext(), prod, Toast.LENGTH_SHORT).show();
         }
     }
